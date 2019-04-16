@@ -1,0 +1,19 @@
+.mainGrid {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.catMenu {
+
+}
+
+.commonAttributes {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.ui.container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 700px;
+}

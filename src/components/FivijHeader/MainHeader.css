@@ -1,0 +1,46 @@
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.header-class .logo {
+    display: flex;
+}
+
+.divRight .menubar {
+    display: none;
+}
+
+.divRight .linkBar {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.divRight .sell {
+    content: 'test';
+}
+
+@media only screen and (max-width: 600px) {
+    .divRight .menubar {
+        display: inline-block;
+    }
+
+    .divRight .linkBar {
+        display: none !important;
+    }
+
+    .divRight .sell {
+        content: 'Sell';
+    }
+}

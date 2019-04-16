@@ -1,0 +1,24 @@
+.flex-container-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.divStyle {
+    width: calc(20% - 5px);
+    flex-grow: 1;
+    margin: 5px;
+}
+
+.divStyle button {
+    width: 100%;
+
+}
+
+@media screen and (max-width: 500px) {
+    .divStyle {
+        width: 100%;
+    }
+}

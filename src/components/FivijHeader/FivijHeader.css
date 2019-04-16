@@ -1,0 +1,5 @@
+.flex-container {
+    margin-right: 100px;
+    display: flex;
+    flex-direction: row;
+}
