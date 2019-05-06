@@ -16,7 +16,8 @@ const initialState = {
         {id: 'f9a89e42-6301-4f2d-9f5f-8e7c0183d4ba', name: 'Amol', isActive: false},
         {id: 'c67dfe08-be0b-4baf-970d-995cf2a89169', name: 'Tabriz', isActive: false},
         {id: '8926381d-16c0-4439-b470-fa23bc2dcc0f', name: 'Yazd', isActive: false},
-        {id: 'd2ec0494-7df2-4a4c-9f59-91fc58c54d32', name: 'Zahedan', isActive: false}
+        {id: '7a6cbe3e-c33e-4aeb-a44f-e5225ee037e4', name: 'Anzali', isActive: false},
+        {id: 'fc055230-8cb5-4b51-baf6-8a0a148eb956', name: 'Lahijan', isActive: false}
     ],
     selectedCity: {id: 'c85915d6-591f-485c-a327-b8110c86aa30', name: 'Tehran', isActive: true},
 };

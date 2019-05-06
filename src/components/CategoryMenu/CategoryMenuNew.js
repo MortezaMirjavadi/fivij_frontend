@@ -18,7 +18,13 @@ const CategoryMenu = (props) => {
                                    : item.level === _nodeSelectedLevel + 1 ? 30
                                    : item.level === _nodeSelectedLevel + 2 ? 40 : 5
                        }}
-                       onClick={() => !_isLeaf ? props.onGetCategoryById(item.id) : props.cloneCategoryStruct(item.id)}>
+                       onClick={() => {
+                           props.onGetCategoryFilter(item.id);
+                           !_isLeaf ?
+                               props.onGetCategoryById(item.id)
+                               : props.cloneCategoryStruct(item.id)
+                       }
+                       }>
                 <List.Content floated="left">
                     <List.Header style={{fontSize: props.fontSize}}> {item.menuName} </List.Header>
                 </List.Content>
@@ -61,12 +67,14 @@ const mapsStateToProps = state => {
         activeSubMenu: state.categoryMenuData.activeSubMenu,
         registerAdvFields: state.categoryMenuData.registerAdvFields,
         categoryJsonInstance: state.categoryMenuData.categoryJsonInstance,
+        currentFilter: state.categoryMenuData.currentFilter,
     }
 };
 const mapsDispatchToProps = dispatch => {
     return {
         onGetCategoryById: (id) => dispatch(actionTypes.getCategoryById(id)),
-        cloneCategoryStruct: (id) => dispatch(actionTypes.cloneCategoryStruct(id))
+        cloneCategoryStruct: (id) => dispatch(actionTypes.cloneCategoryStruct(id)),
+        onGetCategoryFilter: (id) => dispatch(actionTypes.getCurrentFilter(id))
     }
 };
 

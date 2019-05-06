@@ -4,14 +4,14 @@ import {Card, Grid} from "semantic-ui-react";
 const items = [
     {
         key: "1216303c-2650-4ad1-ac58-12bc0916dd78",
-        fluid: true,
+        fluid: false,
         header: 'Project Report - April',
         description: 'Leverage agile frameworks to provide a robust synopsis for high level overviews.',
         meta: 'ROI: 30%',
     },
     {
         key: "2a7d9dd6-8658-47a2-9fd4-14f9f3b3fb42",
-        fluid: true,
+        fluid: false,
         header: 'Project Report - May',
         description: 'Bring to the table win-win survival strategies to ensure proactive domination.',
         meta: 'ROI: 34%',

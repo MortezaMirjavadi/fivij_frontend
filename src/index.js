@@ -13,12 +13,15 @@ import createSagaMiddleware from "redux-saga"
 import rootSaga from "./store/sagas/saga";
 import categoryMenuReducer from "./store/reducers/categoryMenuReducer";
 import RegisterAdv from "./components/RegisterAdv/RegisterAdv";
+import LoginCmp from "./components/Login/LoginCmp";
+import loginReducer from "./store/reducers/loginReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducers = combineReducers({
     appData: rootReducer,
-    categoryMenuData: categoryMenuReducer
+    categoryMenuData: categoryMenuReducer,
+    loginData: loginReducer
 });
 
 const sagaMiddleWare = createSagaMiddleware();
@@ -29,6 +32,7 @@ ReactDom.render(
     <Provider store={store}>
         <Router>
             <Route path="/new" component={RegisterAdv}/>
+            <Route path="/login" component={LoginCmp}/>
             <Route path="/" exact component={MainContent}/>
         </Router>
     </Provider>

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Grid} from "semantic-ui-react";
+import {Divider, Grid} from "semantic-ui-react";
 import AdvItems from "../AdvItems/AdvItems";
 import Dispatcher from "../../utils/Dispatcher";
 import CategoryMenuNew from "../CategoryMenu/CategoryMenuNew";
@@ -41,6 +41,7 @@ const MainContent = (props) => {
                                     <FilterCat/>
                                 </Grid.Column>
                             </Grid.Row>
+                            <Divider/>
                             <Grid.Row>
                                 <Grid.Column>
                                     <AdvItems/>

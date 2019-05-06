@@ -4,7 +4,8 @@ const FieldTypes = {
     DROPDOWN: 3,
     CHECKBOX: 4,
     CMBDROPTEXT: 5,
-    CMBTWODROPDOWN: 6
+    CMBTWODROPDOWN: 6,
+    CMBTWOTEXT: 7
 };
 
 export default FieldTypes;

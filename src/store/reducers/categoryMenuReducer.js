@@ -7,14 +7,14 @@ const initialState = {
     activeSubMenu: new CategoryJson().getInitialMenu(),
     registerAdvFields: [],
     categoryJsonInstance: new CategoryJson(),
-    isShowCategoryMenu: true
+    isShowCategoryMenu: true,
+    currentFilter: []
 };
 
 const categoryMenuReducer = (state = initialState, action) => {
-
+    const instance = state.categoryJsonInstance;
     switch (action.type) {
         case actionTypes.GETCATEGORYBYID: {
-            const instance = state.categoryJsonInstance;
             const _subMenu = instance.getSubMenuWithParentAndReturnNode(action.payload);
             return {
                 ...state,
@@ -40,6 +40,9 @@ const categoryMenuReducer = (state = initialState, action) => {
         }
         case actionTypes.SENDADVERTISEMENT: {
             return {...state}
+        }
+        case actionTypes.GETCURRENTFILTER: {
+            return {...state, currentFilter: instance.getCategoryFilter(action.payload)}
         }
         default:
             return state;

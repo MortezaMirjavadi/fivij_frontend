@@ -1,5 +1,7 @@
 import React, {useState} from "react";
+import {connect} from "react-redux";
 import {Button, Dropdown, Grid, Icon, Input} from "semantic-ui-react";
+import DynamicFilter from "../DynamicFilter/DynamicFilter";
 
 const friendOptions = [
     {
@@ -22,7 +24,7 @@ const FilterCat = (props) => {
         <React.Fragment>
             <Grid.Row only="computer">
                 <Grid.Column>
-                    <Grid centered>
+                    <Grid>
                         <Grid.Row columns={3}>
                             <Grid.Column width={5}>
                                 <Input icon='search' fluid placeholder='Search...'/>
@@ -49,41 +51,24 @@ const FilterCat = (props) => {
                                 />
                             </Grid.Column>
                         </Grid.Row>
+                        {props.currentFilter !== null && props.currentFilter.length > 0 &&
+                        <Grid.Row>
+                            <DynamicFilter/>
+                        </Grid.Row>
+                        }
                     </Grid>
                 </Grid.Column>
             </Grid.Row>
-
-            {/*<Grid.Row only="tablet">*/}
-            {/*<Grid.Column>*/}
-            {/*<Grid>*/}
-            {/*<Grid.Row>*/}
-            {/*<Grid.Column>*/}
-            {/*<Input icon='search' fluid placeholder='Search...'/>*/}
-            {/*</Grid.Column>*/}
-            {/*</Grid.Row>*/}
-            {/*<Grid.Row>*/}
-            {/*<Grid.Column>*/}
-            {/*<Dropdown*/}
-            {/*fluid*/}
-            {/*selection*/}
-            {/*options={this.state.options}*/}
-            {/*name="Select Category"*/}
-            {/*floating*/}
-            {/*compact*/}
-            {/*/>*/}
-            {/*</Grid.Column>*/}
-            {/*</Grid.Row>*/}
-            {/*<Grid.Row>*/}
-            {/*<Button fluid basic icon labelPosition="right">*/}
-            {/*<Icon name="angle down"/>*/}
-            {/*Select the category*/}
-            {/*</Button>*/}
-            {/*</Grid.Row>*/}
-            {/*</Grid>*/}
-            {/*</Grid.Column>*/}
-            {/*</Grid.Row>*/}
         </React.Fragment>
     )
 };
+const mapsStateToProps = state => {
+    return {
+        currentFilter: state.categoryMenuData.currentFilter
+    }
+};
+const mapsDispatchToProps = dispatch => {
+    return {}
+};
 
-export default FilterCat;
+export default connect(mapsStateToProps, null)(FilterCat);

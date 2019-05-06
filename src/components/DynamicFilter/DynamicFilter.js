@@ -1,28 +1,22 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Button, Divider, Grid, Icon, Segment} from "semantic-ui-react";
-import EnumFieldTypes from "../../../enums/EnumFieldTypes";
-import TextFieldCmp from "../TextFieldCmp/TextFieldCmp";
-import DropDownCmp from "../DropDownCmp/DropDownCmp";
-import RadioGroupCmp from "../RadioGroupCmp/RadioGroupCmp";
-import CheckboxCmp from "../CheckboxCmp/CheckboxCmp";
-import CmbDropText from "../CmbDropText/CmbDropText";
-import CmbTwoDropDown from "../CmbTwoDropdown/CmbTwoDropDown";
-import CommonCmpsHeader from "../CommonCmps/CommonCmpsHeader";
-import CommonCmpsFooter from "../CommonCmps/CommonCmpsFooter";
-import "./DynamicCmp.css";
-import CmbTwoTextField from "../CmbTwoText/CmbTwoText";
+import EnumFieldTypes from "../../enums/EnumFieldTypes";
+import TextFieldCmp from "../DynamicComponents/TextFieldCmp/TextFieldCmp";
+import DropDownCmp from "../DynamicComponents/DropDownCmp/DropDownCmp";
+import RadioGroupCmp from "../DynamicComponents/RadioGroupCmp/RadioGroupCmp";
+import CheckboxCmp from "../DynamicComponents/CheckboxCmp/CheckboxCmp";
+import CmbDropText from "../DynamicComponents/CmbDropText/CmbDropText";
+import CmbTwoDropDown from "../DynamicComponents/CmbTwoDropdown/CmbTwoDropDown";
+import CmbTwoTextField from "../DynamicComponents/CmbTwoText/CmbTwoText";
 
-const DynamicCmp = (props) => {
+const DynamicFilter = (props) => {
     return (
-        <Segment>
-            <CommonCmpsHeader/>
-
-            {props.registerAdvFields._fields.map(field => {
+        <React.Fragment>
+            {props.currentFilter != null && props.currentFilter.map(field => {
                     if (field.fieldType === EnumFieldTypes.TEXTFIELD) {
                         return (
                             <div key={field.id}
-                                 className="marginTopDynamicComponent">
+                                 className="marginTopDynamicComponent marginLeftDynamicComponent">
                                 <TextFieldCmp
                                     key={field.id}
                                     label="Measure"
@@ -35,7 +29,7 @@ const DynamicCmp = (props) => {
                     if (field.fieldType === EnumFieldTypes.DROPDOWN) {
                         return (
                             <div key={field.id}
-                                 className="marginTopDynamicComponent">
+                                 className="marginTopDynamicComponent marginLeftDynamicComponent">
                                 <DropDownCmp
                                     key={field.id}
                                     options={field.options}
@@ -48,7 +42,7 @@ const DynamicCmp = (props) => {
                     if (field.fieldType === EnumFieldTypes.RADIOGROUP) {
                         return (
                             <div key={field.id}
-                                 className="marginTopDynamicComponent">
+                                 className="marginTopDynamicComponent marginLeftDynamicComponent">
                                 <RadioGroupCmp
                                     key={field.id}
                                     options={field.options}
@@ -61,7 +55,7 @@ const DynamicCmp = (props) => {
                     if (field.fieldType === EnumFieldTypes.CHECKBOX) {
                         return (
                             <div key={field.id}
-                                 className="marginTopDynamicComponent">
+                                 className="marginTopDynamicComponent marginLeftDynamicComponent">
                                 <CheckboxCmp
                                     key={field.id}
                                     propName={field.name}
@@ -74,7 +68,7 @@ const DynamicCmp = (props) => {
                     if (field.fieldType === EnumFieldTypes.CMBDROPTEXT) {
                         return (
                             <div key={field.id}
-                                 className="marginTopDynamicComponent">
+                                 className="marginTopDynamicComponent marginLeftDynamicComponent">
                                 <CmbDropText
                                     key={field.id}
                                     propName={field.name}
@@ -85,7 +79,7 @@ const DynamicCmp = (props) => {
                     if (field.fieldType === EnumFieldTypes.CMBTWODROPDOWN) {
                         return (
                             <div key={field.id}
-                                 className="marginTopDynamicComponent">
+                                 className="marginTopDynamicComponent marginLeftDynamicComponent">
                                 <CmbTwoDropDown
                                     key={field.id}
                                     propName={field.name}
@@ -94,47 +88,36 @@ const DynamicCmp = (props) => {
                             </div>
                         )
                     }
-                if (field.fieldType === EnumFieldTypes.CMBTWOTEXT) {
-                    return (
-                        <div key={field.id}
-                             className="marginTopDynamicComponent">
-                            <CmbTwoTextField
-                                key={field.id}
-                                propName={field.name}
-                                from={field.from}
-                                to={field.to}/>
-                        </div>
-                    )
-                }
+                    if (field.fieldType === EnumFieldTypes.CMBTWOTEXT) {
+                        return (
+                            <React.Fragment>
+                                <div key={field.id}
+                                     className="marginTopDynamicComponent marginLeftDynamicComponent">
+                                    <CmbTwoTextField
+                                        key={field.id}
+                                        propName={field.name}
+                                        fromDescription={field.fromDescription}
+                                        toDescription={field.toDescription}
+                                        from={field.from}
+                                        to={field.to}/>
+                                </div>
+                            </React.Fragment>
+                        )
+                    }
                 }
             )
             }
-            <CommonCmpsFooter/>
-            <div className="marginTopDynamicComponent">
-                <Divider/>
-            </div>
-
-            <Grid>
-                <Grid.Column mobile={16} tablet={5} computer={5}>
-                    <Button color="google plus" icon labelPosition='left' fluid>
-                        <Icon name='save'/>
-                        Send Advertisement
-                    </Button>
-                </Grid.Column>
-            </Grid>
-        </Segment>
+        </React.Fragment>
     )
 };
 
 const mapsStateToProps = state => {
     return {
-        activeCatId: state.categoryMenuData.activeCatId,
-        registerAdvFields: state.categoryMenuData.registerAdvFields,
-        categoryJsonInstance: state.categoryMenuData.categoryJsonInstance,
+        currentFilter: state.categoryMenuData.currentFilter
     }
 };
 const mapsDispatchToProps = dispatch => {
     return {}
 };
 
-export default connect(mapsStateToProps, null)(DynamicCmp);
+export default connect(mapsStateToProps, null)(DynamicFilter);

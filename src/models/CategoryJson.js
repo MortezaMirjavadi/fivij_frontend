@@ -7,6 +7,7 @@ import CheckBoxClass from "./CheckBoxClass";
 import CmbDropTextClass from "./CmbDropTextClass";
 import EnumCmbDropTextType from "../enums/EnumCmbDropTextType";
 import CmbTwoDropdown from "./CmbTwoDropdown";
+import CmbTwoTextClass from "./CmbTwoTextClass";
 
 
 export default class CategoryJson {
@@ -100,9 +101,86 @@ export default class CategoryJson {
                     id: "c3f4394f-a327-457b-96a3-b7aa038488b3",
                     name: "Year",
                     fieldType: FieldTypes.CMBTWODROPDOWN
-                })
-            ], null),
-            new BaseCat(9, "Borrow (Apartment, Home, Land", 7, 2, null, null),
+                }),
+                new CmbTwoTextClass({
+                    id: "c5853d1e-9875-42f3-a7bb-60d6dba4b5d4",
+                    name: "Measure",
+                    fromDescription: "From",
+                    toDescription: "To",
+                    fieldType: FieldTypes.CMBTWOTEXT,
+                }),
+            ], [
+                new CmbTwoTextClass({
+                    id: "c5853d1e-9875-42f3-a7bb-60d6dba4b5d4",
+                    name: "Measure",
+                    fromDescription: "From",
+                    toDescription: "To",
+                    fieldType: FieldTypes.CMBTWOTEXT,
+                }),
+                new RadioGroupClass({
+                    id: "e13c99a5-8be9-4ed6-9e7e-d9e6dfb108ff",
+                    name: "AdvType",
+                    fieldType: FieldTypes.RADIOGROUP,
+                    options: [
+                        {
+                            key: '5203748a-6814-4364-85b8-e52b0b49920f',
+                            text: 'Representation',
+                            value: 1,
+                        },
+                        {
+                            key: '7394f472-d2aa-4760-9884-228266460a35',
+                            text: 'Request',
+                            value: 2,
+                        },
+                    ]
+                }),
+                new RadioGroupClass({
+                    id: "798bce45-fdca-4aa8-9b3c-838b5c45fe24",
+                    name: "Home",
+                    fieldType: FieldTypes.RADIOGROUP,
+                    options: [
+                        {
+                            key: '5203748a-6814-4364-85b8-e52b0b49920f',
+                            text: 'Don\'t care',
+                            value: 1,
+                        },
+                        {
+                            key: '7f31f808-0962-4bbc-9774-a631bf6bfc7a',
+                            text: 'Is',
+                            value: 2,
+                        },
+                        {
+                            key: '66f43aae-0ab4-4887-b4d0-1b3375afcf9d',
+                            text: 'Is Not',
+                            value: 3,
+                        },
+                    ]
+                }),
+            ]),
+            new BaseCat(9, "Borrow (Apartment, Home, Land", 7, 2, null, [
+                new RadioGroupClass({
+                    id: "798bce45-fdca-4aa8-9b3c-838b5c45fe24",
+                    name: "Home",
+                    fieldType: FieldTypes.RADIOGROUP,
+                    options: [
+                        {
+                            key: '5203748a-6814-4364-85b8-e52b0b49920f',
+                            text: 'Don\'t care',
+                            value: 1,
+                        },
+                        {
+                            key: '7f31f808-0962-4bbc-9774-a631bf6bfc7a',
+                            text: 'Is',
+                            value: 2,
+                        },
+                        {
+                            key: '66f43aae-0ab4-4887-b4d0-1b3375afcf9d',
+                            text: 'Is Not',
+                            value: 3,
+                        },
+                    ]
+                }),
+            ]),
             new BaseCat(10, "Holds tools", 7, 2, null, null),
 
             new BaseCat(11, "Light weight cars", 3, 3, null, null),
@@ -110,6 +188,11 @@ export default class CategoryJson {
             new BaseCat(13, "Borrow cars", 3, 3, null, null),
             new BaseCat(14, "Classic cars", 3, 3, null, null),
         ];
+    }
+
+    getCategoryFilter(id) {
+        const _node = this.getCategoryNode(id);
+        return _node._filters;
     }
 
     get hierarchyCat() {
