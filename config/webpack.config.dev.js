@@ -6,10 +6,10 @@ const UglifyjsPlugin = require("uglifyjs-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
-
+console.log(path.resolve(__dirname, './dist'));
 module.exports = {
     mode: "development",
-    entry: ['babel-polyfill', './src/index.js'],
+    // entry: __dirname + '/src/index.js',
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].[hash].js',
@@ -17,9 +17,11 @@ module.exports = {
         publicPath: ASSET_PATH || "/"
     },
     devServer: {
-        contentBase: "./dist",
+        contentBase: path.resolve(__dirname, './dist'),
         historyApiFallback: true,
-        hot: true
+        hot: true,
+        inline: true,
+        compress: true
     },
     resolve: {
         extensions: ['*', '.js', '.jsx']
@@ -57,12 +59,17 @@ module.exports = {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 use: ["style-loader", "css-loader", "sass-loader"],
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
+                exclude: /node_modules/,
+                use: ['file-loader?name=[name].[ext]']
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: __dirname + '/index.html',
+            template: './public/index.html',
             filename: 'index.html',
             inject: 'body'
         }),
